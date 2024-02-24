@@ -1,2 +1,2 @@
-focus on JS main 
+focus on JS
 less CSS
