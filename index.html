@@ -14,13 +14,15 @@
 
         <!-- <input type="text" id="username" name="username" placeholder="username"> -->
 
-        <input type="text" id="email" name="email" placeholder="email">
+        <input type="text" id="email" name="email" oninput="validateemail()" placeholder="email">
         <span id="error_email"></span>
 
-        <input type="password" id="Password" name="password" placeholder="password">
+        <input type="password" id="Password" oninput="validatepassword()" placeholder="password">
         <span id="error_pass"></span>
 
-        <input type="password" id="confirmpassword" name="confirm-password" placeholder="Confirm Password">
+        <input type="password" id="confirmpassword" placeholder="confirmpassword">
+        <span id="error_confirmpass"></span>
+
 
         <button type="submit">Submit</button>
     </form>

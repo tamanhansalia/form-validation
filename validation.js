@@ -1,61 +1,54 @@
-var Email = document.getElementById('email');
-var password = document.getElementById('Password');
-var confirmpassword = document.getElementById('confirmPassword');
 var form = document.getElementById('regForm');
 
-var emailError = document.getElementById('error_email');
-var passwordError = document.getElementById('error_pass');
+
+
+function validatepassword() {
+    var password = document.getElementById('Password');
+    var passwordError = document.getElementById('error_pass');
+
+    var confirmpassword = document.getElementById('confirmpassword');
+    var confirmpasswordError = document.getElementById('error_confirmpass');
+
+    if (password.value == 0) {
+        passwordError.textContent = "Please enter a Password.";
+        passwordError.style.color = 'Red';
+    }
+    else if (password.value.length < 8 || confirmpassword.value.length < 8) {
+        passwordError.textContent = "Your password must be at least 8 characters long.";
+        passwordError.style.color = 'Yellow';
+        confirmpasswordError.textContent = "password not match";
+    }
+    else if (password.value !== confirmpassword.value) {
+        confirmpasswordError.textContent = "password not match";
+        confirmpasswordError.style.color = 'Yellow';
+    }
+
+    else {
+        confirmpasswordError.textContent = "Valid password";
+        confirmpasswordError.style.color = 'Green';
+    }
+}
+
+function validateemail() {
+    var email = document.getElementById('email');
+    var emailError = document.getElementById('error_email');
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (email.value == 0) {
+        emailError.textContent = "Please enter your email address.";
+        emailError.style.color = 'Red';
+    }
+
+    else if (!email.value.match(mailformat)) {
+        emailError.textContent = "Invalid email";
+        emailError.style.color = 'Red';
+    }
+    else {
+        emailError.textContent = "Valid email";
+        emailError.style.color = 'green';
+    }
+}
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-    validEmail();
-    validPassword();
-}
-)
-
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-
-
-function validPassword() {
-    if (password.value == 0) {
-        passwordError.style.color = 'Red';
-        passwordError.textContent = "Please enter a Password.";
-        return false;
-    }
-    else if (password.value.length < 8) {
-        passwordError.style.color = 'Yellow';
-        passwordError.textContent = "Your password must be at least 8 characters long.";
-        return false;
-    }
-    else if (password != confirmpassword) {
-        passwordError.textContent = "password not match";
-        return false;
-    }
-
-    else {
-        password.style.backgroundColor = 'Green';
-        return true;
-    }
-}
-
-function validEmail() {
-    if (Email.value == 0) {
-        emailError.style.color = 'Red';
-        emailError.textContent = "Please enter your Email address.";
-        return false;
-
-    }
-
-    else if (Email.value.match(mailformat)) {
-        emailError.textContent = "Valid Email";
-        emailError.style.color = 'green';
-
-        return true;
-    }
-    else {
-        emailError.style.color = 'Red';
-        emailError.textContent = "Invalid Email";
-        return false;
-    }
-}
+});
